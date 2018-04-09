@@ -38,6 +38,22 @@ class Solution:
                 count = 1
         return outString
 
+    def recursive(self, n):
+        if(n==1):
+            return str(1)
+        else:
+            thisString=self.recursive(n-1)
+            count = 1
+            outString=''
+            for i in range(len(thisString)):
+                if (i + 1 < len(thisString) and (thisString[i] == thisString[i + 1])):
+                    count = count + 1
+                else:
+                    outString = outString + str(count)
+                    outString = outString + thisString[i]
+                    count = 1
+            return outString
+
     def countAndSay(self, n):
         """
         :type n: int
@@ -50,3 +66,4 @@ class Solution:
 
 this=Solution()
 print(this.countAndSay(5))
+print(this.recursive(5))
